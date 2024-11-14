@@ -1,1 +1,19 @@
-# TODO
+version: '3.3'
+services:
+  db:
+    image: postgres:9.4.5
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+  backend:
+    image: sprathod/ecommerce_backend:0.0.1
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+  frontend:
+    image: sprathod/ecommerce_frontend:0.0.1
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
